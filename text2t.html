@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LToL</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+        body {
+          
+         
+            background-color: #f0f0f0;
+        }
+        .main{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            background-color:  rgb(14, 20, 32);
+        }
+        .exit{
+            width: 100px;
+            height: 100px;
+            background-color:rgb(40, 9, 71);
+          
+          
+            border-radius: 50%;
+            font-size: 40px;
+           
+
+        }
+        .exit:hover{
+         transform: rotate(30deg);
+        }
+        .container {
+        
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color:  rgb(17 24 39 );
+         color: rgb(0, 0, 0);
+            row-gap: 10px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            height: 600px;
+            width: 55%;
+
+          
+        }
+        .editable {
+            padding-top: 10px;
+            width: 80%;
+            height: 280px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #0e1524;
+            border-radius: 10px;
+            overflow: auto;
+            outline: none;
+           color: white;
+           background-color:  rgb(32, 44, 70);
+           font-family: 'Times New Roman', Times, serif;
+           font-size: 20px;
+            
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100px;
+            height: 40px;
+        }
+        .btns{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            column-gap: 20PX;
+            
+        }
+        select{
+            width: 50%;
+            height: 40px;
+            background-color: rgb(255, 255, 255);
+            padding-left: 20px;
+            outline: none;
+            border-radius: 30PX;
+            
+        }
+      
+        option{
+            height: 500px;
+        }
+        button:disabled {
+            background-color: #cccccc;
+        }
+        .highlight {
+            background-color: rgb(240, 240, 117);
+        }
+
+        button:hover{
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        
+            <a href="landingPage.html"><button class="exit">🔚 </button></a>
+        
+        <div class="container">
+            <h1 style="padding: 0 0 20px 0; color: white;"> <span style="color: sienna;">Text</span> to Speech <span style="color:aqua;">Converter</span> </h1>
+            <div id="text" class="editable" contenteditable="true" placeholder="Enter text here..."></div>
+            <br>
+            <select id="voiceSelect"></select>
+            <br>
+            <div class="btns">
+            <button onclick="speak()">Speak</button>
+            <button onclick="pause()">Pause</button>
+            <button onclick="resume()">Resume</button>
+            <button onclick="refresh()">Refresh</button>
+            </div>
+            
+        </div>
+
+    </div>
+   
+
+    <script>
+        window.onload=function(){document.getElementById("text").focus()}
+        let synth = window.speechSynthesis;
+        let utterance;
+        let voices = [];
+        
+        function populateVoiceList() {
+            voices = synth.getVoices();
+            let voiceSelect = document.getElementById('voiceSelect');
+            voiceSelect.innerHTML = '';
+            voices.forEach((voice, index) => {
+                let option = document.createElement('option');
+                option.textContent = `${voice.name} `;
+                option.value = index;
+                if (voice.default) {
+                    option.selected = true;
+                }
+                voiceSelect.appendChild(option);
+            });
+        }
+        window.onload=function(){
+            document.getElementById("text").focus();
+        }
+        populateVoiceList();
+        if (synth.onvoiceschanged !== undefined) {
+            synth.onvoiceschanged = populateVoiceList;
+        }
+
+        function speak() {
+            let textElement = document.getElementById('text');
+            let text = textElement.innerText;
+            if (synth.speaking) {
+                synth.cancel();
+            }
+            let selectedOption = document.getElementById('voiceSelect').selectedOptions[0].value;
+            let selectedVoice = voices[selectedOption];
+            utterance = new SpeechSynthesisUtterance(text);
+            utterance.voice = selectedVoice;
+
+            utterance.onboundary = function(event) {
+                highlightWord(event.charIndex);
+            };
+
+            synth.speak(utterance);
+        }
+
+        function highlightWord(charIndex) {
+            let textElement = document.getElementById('text');
+            let text = textElement.innerText;
+            let words = text.split(' ');
+            let currentIndex = 0;
+            let wordIndex = 0;
+            for (let i = 0; i < words.length; i++) {
+                if (currentIndex + words[i].length >= charIndex) {
+                    wordIndex = i;
+                    break;
+                }
+                currentIndex += words[i].length + 1;
+            }
+            let highlightedText = words.map((word, index) => {
+                if (index === wordIndex) {
+                    return `<span class="highlight">${word}</span>`;
+                } else {
+                    return word;
+                }
+            }).join(' ');
+            textElement.innerHTML = highlightedText;
+        }
+
+        function pause() {
+            if (synth.speaking && !synth.paused) {
+                synth.pause();
+            }
+        }
+
+        function resume() {
+            if (synth.paused) {
+                synth.resume();
+            }
+        }
+
+        function refresh() {
+            document.getElementById('text').innerHTML = '';
+            synth.cancel();
+        }
+    </script>
+</body>
+</html>

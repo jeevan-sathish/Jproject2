@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+     
+
+
+        header{
+            width: 100%;
+            height: 8vh;
+            background-color:  rgb(12, 17, 27);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav2 , .nav1{
+            width: 50%;
+            height: 100%;
+            background-color: transparent;
+            backdrop-filter: blur(50px);
+            
+        }
+        .nav1{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 20px;
+            color: white;
+            font-weight: bolder;
+            font-size: 20px;
+        
+        }
+        .nav2{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            column-gap: 30px;
+            padding-right: 30px;
+        }
+        button{
+            
+            width: 100px;
+            height: 40px;
+            background-color: rgb(126, 126, 247);
+            border-radius: 20px;
+            outline: none;
+            border: none;
+           
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height:92vh ;
+           background-color:  rgb(17 24 39 );
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            position: relative;
+            z-index: 0;
+        }
+        #login{
+            margin-top: 20px;
+            width: 470px;
+            height: 70px;
+            background-color: black;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            column-gap: 10px;
+            border-radius: 20px;
+           
+        }
+        #inpt{
+            width: 320px;
+            height: 53px;
+            padding-left: 20px;
+            font-size: 20px;
+            border-radius: 20px;
+        }
+        input[type="submit"]{
+            width: 100px;
+            height: 53px;
+            background-color: red;
+            font-weight: bolder;
+            border-radius: 20px;
+        }
+        footer{
+            width: 100%;
+            height: 200px;
+            background-color: black;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            color: rgb(91, 87, 87);
+            line-height: 30px;
+        }
+        footer a{
+            color: gray;
+            text-decoration: none;
+        }
+        footer a:hover{
+            color: green;
+        }
+      
+        #sin_pop{
+            visibility: hidden;
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background-color:white;
+            z-index: 1;
+            top: 10vh;
+            left: 70%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            row-gap: 10px;
+        }
+        #sinpt{
+            padding-left: 20px;
+        }
+        .btn{
+            background-color: green;
+            color: white;
+            width: 87%;
+            height: 50px;
+        }
+        #sinpt {
+            width: 80%;
+           border-radius: 20px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav1">
+          <span style="color:sienna ;">Lazy</span>Site
+        </nav>
+        <nav class="nav2">
+            <button id="s-btn" onclick="display(event)">Start</button>
+           
+            
+
+        </nav>
+    </header>
+    <div class="container">
+        <h1 style="font-size: 100px;padding-top: 30px; color: rgb(249, 249, 249);">wellcome to <span style="color:sienna ;">Lazy</span> study site</h1>
+        <p style="font-size: 20px; font-weight:none; color: rgb(111, 113, 113);">Enhance your journey with lazyness helping you whith your lazzy way to be a part af your sucessful life</p>
+        <div id="login">
+            <input type="password" id="inpt" placeholder="Enter the pin code" maxlength="6" onkeydown="submitt(event)">
+
+            <input type="submit" onclick="getIn()" >
+        </div>
+        <p style="color: rgb(98, 118, 230);">Entry point and get started.</p>
+    </div>
+   
+
+    <div id="sin_pop">
+        <h1>GetIn</h1>
+        <input type="text" id="sinpt" placeholder="enter the pin">
+        <button class="btn" onclick="check()">submit😉</button>
+        <p>preloaded code.</p>
+
+    </div>
+
+    <footer>
+        <ul title="contact info">
+            <li> Contact no: 7892652247</li>
+            <li>  Email: sathishjeevan2004@gmail.com</li>
+            <a href="mailto: sathishjeevan2004@gmail.com">Send Email</a>
+           
+
+
+        </ul>
+
+        <ul>
+            <li>Instagram
+                <a href="https://www.instagram.com/pro_dreamer_2/profilecard/?igsh=dm9kZjVhc21jdWQz">instagram.com</a>
+            </li>
+            <li>whatsApp: 6363364844 </li>
+        </ul>
+        <ul>
+            <li>gitHub Acc: <a href="https://github.com/jeevan-sathish">github </a></li>
+        </ul>
+        <span>
+            <h3>Discription 👇</h3>
+             "This site serves you in converting the text into speech." <br>
+            And a smart time table as a demo project, Further it will be optimzed
+        </span>
+
+        
+
+    </footer>
+
+    <script>
+        window.onload = document.getElementById("inpt").focus();
+   const submitt = (e) => {
+    if (e.key === "Enter") {
+        const inp = document.getElementById("inpt").value;
+        if (inp === "720462") {
+            location.assign("index.html");
+        } else {
+            document.getElementById("inpt").value = "";
+        }
+    }
+};
+
+
+
+
+        const display=(e)=>{
+            const pop =document.getElementById("sin_pop");
+          
+        if (pop.style.visibility === "hidden" || pop.style.visibility === "")
+         { pop.style.visibility = "visible";}
+   
+        }
+       const getIn = () => {
+        const inp = document.getElementById("inpt").value;
+           if(inp==="720462"){
+            location.assign("index.html");
+           }
+           else{
+          document.getElementById("inpt").value="";
+           }
+}
+
+const check=()=>{
+    const sinpt =document.getElementById("sinpt").value
+    if(sinpt==="user@1234"){
+        location.assign("text2t.html")
+    }
+    else{
+        const pop =document.getElementById("sin_pop");
+          
+          if (pop.style.visibility === "visible" || pop.style.visibility === "")
+           { pop.style.visibility = "hidden";}
+           const sinpt =document.getElementById("sinpt").value="";
+     
+    }
+
+}
+
+
+
+    </script>
+</body>
+</html>

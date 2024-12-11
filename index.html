@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart time table</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- // main container -->
+     <div class="main__container">
+
+
+    <!-- sidebar -->
+        <div class="side__bar">
+            <div class="time__bar">
+                <input type="date" name="calendet" id="calendar" onchange="getWeekDay()">
+                <p id="display_time"></p>
+                <audio id="click-sound" src="audios/mouse-click-sound-233951.mp3" preload="auto"></audio>
+                <audio id="deleted-sound" src="audios/delete.mp3" preload="auto"></audio>
+                <audio id="created-sound" src="audios/created.mp3" preload="auto"></audio>
+                <audio id="intro-sound" src="audios/lazy study.mp3" preload="auto"></audio>
+                <audio id="software-sound" src="audios/delete.mp3" preload="auto"></audio>
+                <audio id="monday-sound" src="audios/monday.mp3" preload="auto"></audio>
+                <audio id="tuesday-sound" src="audios/tuesday.mp3" preload="auto"></audio>
+                <audio id="wednesday-sound" src="audios/wednesday.mp3" preload="auto"></audio>
+                <audio id="thursday-sound" src="audios/thrusday.mp3" preload="auto"></audio>
+                <audio id="friday-sound" src="audios/friday.mp3" preload="auto"></audio>
+                
+
+
+             
+            </div>
+
+            <div id="todo_container">
+                <div class="input_field">
+                    
+                    <input type="text" placeholder="Pin here!" id="inpt" onkeydown="showNote(event)" required maxlength="28">
+                    <button class="note_btn" style="font-size: 30px;" onclick="createNote()">📒</button>  
+                </div>
+               
+                    <div id="todo_list_container">
+
+                    </div>
+
+                </div>
+
+                <footer>
+                <button class="site_btn" onclick=" setTimeout(()=>{ lazyStudy()},1000)"> <span style="color:sienna;">Lazy</span>StudySite👉</button>
+            </footer>
+            <div id="periodList">
+                <div class="period_nav">
+                    <h1>sunday</h1>
+                    <button id="period_closeBtn" onclick="period_close()"></button>
+                </div>
+                
+
+            </div>
+
+            <div id="periodList1">
+                <div class="period_nav">
+                    <h1>Monday</h1>
+                    <button id="period_closeBtn" onclick="period_close()"></button>
+                </div>
+                <ol>
+                    <li><button class="period_btn">....</button></li>
+                    <li><button class="period_btn">software engineering</button></li>
+                    <li><button class="period_btn">thoery of coputatios</button></li>
+                    <li><button class="period_btn">E waste management</button></li>
+                    <li><button class="period_btn">research methedology</button></li>
+                    <li><button class="period_btn">Mini project</button></li>
+                    <li><button class="period_btn">placement</button></li>
+                </ol>
+
+            </div>
+            <div id="periodList2">
+                <div class="period_nav">
+                    <h1>tuesday</h1>
+                    <button id="period_closeBtn" onclick="period_close()"></button>
+                </div>
+                <ol>
+                    <li><button class="period_btn">computer networks</button></li>
+                    <li><button class="period_btn">thoery of coputatios</button></li>
+                    <li><button class="period_btn">software engineering</button></li>
+                    <li><button class="period_btn">computer graphics</button></li>
+                    <li><button class="period_btn">Web technology</button></li>
+                    <li><button class="period_btn">mini project</button></li>
+                    <li><button class="period_btn">placement</button></li>
+                </ol>
+
+            </div>
+            <div id="periodList3">
+                <div class="period_nav">
+                    <h1>wednesday</h1>
+                    <button id="period_closeBtn" onclick="period_close()"></button>
+                </div>
+                <ol>
+                    <li><button class="period_btn">computer grpahics</button></li>
+                    <li><button class="period_btn">software engineering</button></li>
+                    <li><button class="period_btn">web technology</button></li>
+                    <li><button class="period_btn">thoery of coputatios</button></li>
+                    <li><button class="period_btn">coputer networks</button></li>
+                    <li><button class="period_btn">research methedology</button></li>
+                    <li><button class="period_btn">placement</button></li>
+                </ol>
+
+            </div>
+            <div id="periodList4">
+                <div class="period_nav">
+                    <h1>thrusday</h1>
+                    <button id="period_closeBtn" onclick="period_close()"></button>
+                </div>
+                <ol>
+                    <li><button class="period_btn">web Lab</button></li>
+                    <li><button class="period_btn">software engineering</button></li>
+                    <li><button class="period_btn">coputer networks</button></li>
+                    <li><button class="period_btn">coputer graphics</button></li>
+                   
+                    <li><button class="period_btn">E waste management</button></li>
+                    
+                 
+                    <li><button class="period_btn">placement</button></li>
+                </ol>
+
+            </div>
+            <div id="periodList5">
+                <div class="period_nav">
+                    <h1 style="text-align: center;">Friday</h1>
+                    <button id="period_closeBtn" onclick="period_close()"></button>
+                </div>
+                <ol>
+                    <li><button class="period_btn">web technology</button></li>
+                    <li><button class="period_btn">thoery of coputatios</button></li>
+                    <li><button class="period_btn">coputer networks lab</button></li>
+                    <li><button class="period_btn">coputer networks class</button></li>
+                    <li><button class="period_btn">computer grpahics</button></li>
+                  <li><button class="period_btn">placement</button></li>
+                </ol>
+
+            </div>
+            <div id="periodList6">
+                <div class="period_nav">
+                    <h1>saturday</h1>
+                    <button id="period_closeBtn" onclick="period_close()"></button>
+                </div>
+                <ol>
+                    <li><button class="period_btn">thoery of coputatios</button></li>
+                    <li><button class="period_btn">software engineering</button></li>
+                   
+                    <li><button class="period_btn">coputer networks</button></li>
+                    <li><button class="period_btn">computer grpahics</button></li>
+                 
+                    
+                    
+                   
+                   
+                    <li><button class="period_btn">placement</button></li>
+                </ol>
+
+            </div>
+
+        </div>
+
+
+
+
+    <!-- table conatiner -->
+     <div class="table_container">
+        <table border="0" id="table">
+       
+            <tr>
+                <th><button style="width: 80px;height: 60px;
+                 border-radius: 20px;background-color:rgb(20, 222, 158);color: black; font-weight: bolder;">day/time</button> </th>
+                <th><button class="time , t1" onclick="col1()">09:15am - 10:15am</button> </th>
+                <th><button class="time" onclick="col2()">10:15am - 11:15am</button> </th>
+                <th><button class="time" onclick="col3()">11:15am - 11:30am</button> </th>
+                <th><button class="time" onclick="col4()">11:30am - 12:25pm</button> </th>
+                <th><button class="time" onclick="col5()">12:25pm - 01:20pm</button> </th>
+                <th><button class="time" onclick="col6()">01:20pm - 02:00pm</button> </th>
+                <th><button class="time" onclick="col7()">01:00pm - 02:55pm</button> </th>
+                <th><button class="time" onclick="col8()">02:55pm - 03:50pm</button> </th>
+                <th><button class="time" onclick="col9()">03:50pm - 04:45pm</button> </th>
+            </tr>
+    
+            <tr>
+                <th><button class="day" onclick="row1()">MON</button> </th>
+                <td><button class="r1 , c1">...</button></td>
+                <td><button onclick="software()" class="r2 , c1">Software engineering</button></td>
+                <td rowspan="7" > <button class="tb " onclick="lunchbrk()" > T <br> E <br>A  <br><br> B <br> R <br> E <br>A <br> K</button></td>
+                <td><button onclick="Toc()"  class="r3 , c1">Theory of Computations</button></td>
+                <td><button class="r4 , c1" onclick="wastemanage()">E Waste Management</button></td>
+                <td rowspan="7"><button>L <br> U <br>N  <br> C <br> H<br> <br> B <br> R <br> E <br>A <br> K </button></td>
+                <td><button onclick="research()" class="r5 , c1">Research Metology</button></td>
+                <td><button onclick="software()" class="r6 , c1 ">Mini Project</button></td>
+                <td ><button onclick="placement()"  class="r7 , c1">placement</button></td>
+              
+            </tr>
+    
+            <tr>
+                <th><button class="day" onclick="row2()">TUE</button> </th>
+                <td><button onclick="compNet()"class="r1 , c2">Computer Networks</button></td>
+                <td><button onclick="Toc()" class="r2 , c2">Theory of Computations</button></td>
+                <td><button onclick="software()"  class="r3 , c2">Software engineering</button></td>
+                <td><button onclick="compGra()" class="r4 , c2">Conputer Graphics</button></td>
+                <td><button onclick="webTec()" class="r5 , c2">Web Technology</button></td>
+                <td><button onclick="software()" class="r6 , c2">Mini Project</button></td>
+                <td ><button onclick="placement()"  class="r7 , c2">placement</button></td>
+            </tr>
+    
+            <tr>
+                <th><button class="day" onclick="row3()">WED</button> </th>
+                <td><button onclick="compGra()" class="r1 , c3" >Conputer Graphics</button></td>
+                <td><button onclick="software()" class="r2 , c3">Software engineering</button></td>
+                <td><button onclick="webTec()"  class="r3 , c3">Web Technology</button></td>
+                <td><button onclick="Toc()" class="r4 , c3">Theory of Computations</button></td>
+                <td><button onclick="compNet()" class="r5 , c3" >Computer Networks</button></td>
+                <td><button onclick="research()" class="r6 , c3">Research Metology</button></td>
+                <td ><button onclick="placement()"  class="r7 , c3"> placement</button></td>
+                
+            </tr>
+    
+            <tr>
+                <th><button class="day" onclick="row4()">THU</button> </th>
+                <td colspan="2"><button class="wlb , c4" onclick="webTec()" >web lab</button></td>
+                <td><button onclick="software()" class="r3 , c4" >Software engineering</button></td>
+                <td><button onclick="compNet()"class="r4 , c4" >Computer Networks</button></td>
+                <td><button onclick="compGra()" class="r5 , c4">Conputer Graphics</button></td>
+                <td><button class="r6 , c4" onclick="wastemanage()">E Waste Management</button></td>
+                <td ><button onclick="placement()"  class="r7 , c4" >placement</button></td>
+                
+            </tr>
+    
+            <tr>
+                <th><button class="day" onclick="row5()">FRI</button> </th>
+                <td><button onclick="webTec()"class="r1 , c5">Web Technology</button></td>
+                <td><button onclick="Toc()" class="r2 , c5">Theory of Computations</button></td>
+                <td colspan="2"><button class="clb, c5">computer lab</button></td>
+                
+                <td><button onclick="compNet()" class="r5 , c5">Conputer Networks</button></td>
+                <td><button onclick="compGra()" class="r6 , c5">Conputer Graphics</button></td>
+                <td ><button onclick="placement()"  class="r7 , c5">placement</button></td> 
+               
+            </tr>
+    
+            <tr>
+                <th><button class="day" onclick="row6()">SAT</button> </th>
+                <td><button onclick="Toc()" class="r1 , c6">Theory of Computations</button></td>
+                <td><button onclick="software()" class="r2 , c6">Software engineering</button></td>
+                <td><button onclick="compNet()"  class="r3 , c6">Computer Networks</button></td>
+                <td><button onclick="compGra()" class="r4 , c6">Conputer Graphics</button></td>
+                <td ><button class="r5 , c6"  onclick="placement()">Placement</button></td>
+                <td ><button class="r6 , c6"  onclick="placement()">Placement</button></td>
+                <td > <a href="landingpage.html"> <button id="exit"  >Exit🔚 </button></a> </td>
+                
+               
+               
+            </tr>
+    
+    
+    
+        </table>
+
+    <!-- cards or profile -->
+        <div  id="card1">
+            <div class="profile_nav">
+                <button style="width: 30px;height: 30px;" class="close" onclick="closee()">❌</button>
+            </div>
+            <div class="profile_wrapper">
+                <div class="profile1"></div>
+                <div class="content">
+               
+                 <h1 class="title"><span style="color: rgb(169, 91, 55);">Prof</span> Jai Ram</h1>
+                 <p class="subject">Software engineering & Project Management</p>
+                 <p class="discription">Professor at mysore collage of engineering and management</p>
+                </div>
+
+            
+            </div>
+        </div>
+
+        <div  id="card2">
+            <div class="profile_nav">
+                <button style="width: 30px;height: 30px;" class="close" onclick="closee()">❌</button>
+            </div>
+            <div class="profile_wrapper">
+                <div class="profile2"></div>
+                <div class="content">
+               
+                 <h1 class="title"><span style="color: rgb(169, 91, 55);">Miss</span>  Deepika</h1>
+                 <p class="subject">Web Technology</p>
+                 <p class="discription">Professor at mysore collage of engineering and management</p>
+                </div>
+
+            
+            </div>
+        </div>
+
+        <div  id="card3">
+            <div class="profile_nav">
+                <button style="width: 30px;height: 30px;" class="close" onclick="closee()">❌</button>
+            </div>
+            <div class="profile_wrapper">
+                <div class="profile3"></div>
+                <div class="content">
+               
+                 <h1 class="title"> <span style="color: rgb(169, 91, 55);">Miss </span>Divyashree</h1>
+                 <p class="subject">Computer Networks</p>
+                 <p class="discription">Professor at mysore collage of engineering and management</p>
+                </div>
+
+            
+            </div>
+        </div>
+
+        <div  id="card4">
+            <div class="profile_nav">
+                <button style="width: 30px;height: 30px;" class="close" onclick="closee()">❌</button>
+            </div>
+            <div class="profile_wrapper">
+                <div class="profile4"></div>
+                <div class="content">
+               
+                 <h1 class="title"><span style="color: rgb(169, 91, 55);">Miss</span>  Sahana</h1>
+                 <p class="subject">Theory of Computations</p>
+                 <p class="discription">Professor at mysore collage of engineering and management</p>
+                </div>
+
+            
+            </div>
+        </div>
+
+        <div  id="card5">
+            <div class="profile_nav">
+                <button style="width: 30px;height: 30px;" class="close" onclick="closee()">❌</button>
+            </div>
+            <div class="profile_wrapper">
+                <div class="profile5"></div>
+                <div class="content">
+               
+                 <h1 class="title" style="font-size: 28px;"><span style="color: rgb(169, 91, 55); "> Miss</span> Anusha & anjali</h1>
+                 <p class="subject">Computer Graphics And Designing</p>
+                 <p class="discription">Professor at mysore collage of engineering and management</p>
+                </div>
+
+            
+            </div>
+        </div>
+
+        <div  id="card6">
+            <div class="profile_nav">
+                <button style="width: 30px;height: 30px;" class="close" onclick="closee()">❌</button>
+            </div>
+            <div class="profile_wrapper">
+                <div class="profile6"></div>
+                <div class="content">
+               
+                 <h1 class="title"><span style="color: rgb(169, 91, 55);">miss</span>  Madhurya</h1>
+                 <p class="subject">Web Research Metology</p>
+                 <p class="discription">Professor at mysore collage of engineering and management</p>
+                </div>
+
+            
+            </div>
+        </div>
+
+        <div  id="card7">
+            <div class="profile_nav">
+                <button style="width: 30px;height: 30px;" class="close" onclick="closee()">❌</button>
+            </div>
+            <div class="profile_wrapper">
+                <div class="profile7"></div>
+                <div class="content">
+               
+                 <h1 class="title"> prof Abishek</h1>
+                 <p class="subject">Environmental studies and E waste Management</p>
+                 <p class="discription">Professor at mysore collage of engineering and management</p>
+                </div>
+
+            
+            </div>
+        </div>
+
+        
+        <div  id="card8">
+            <div class="profile_nav">
+                <button style="width: 30px;height: 30px;" class="close" onclick="closee()">❌</button>
+            </div>
+            <div class="profile_wrapper">
+                <div class="profile8"></div>
+                <div class="content">
+               
+                 <h1 class="title">Placement</h1>
+                 <p class="subject">Placement and Communication skills</p>
+                 <p class="discription">Professor at mysore collage of engineering and management</p>
+                </div>
+
+            
+            </div>
+        </div>
+
+        <div id="lazystudy">
+            <div class="lazy_nav">
+                <button class="lazyCloseBtn"  onclick="closee()" >❌</button>
+            </div>
+            <div class="lazy_wrapper">
+                <div class="lazystudy_container">
+                    <h1 class="lazy_title"><span style="color: sienna;">Lazy</span>Study Learn through Listening</h1> 
+                    <textarea id="textInput" rows="10" cols="50" placeholder="Enter text here..."></textarea><br><br>
+                     <select id="voiceSelect"></select><br><br> 
+                     
+                </div>
+                <div class="lazyBtn_wrapper">
+                    <button class="lazy_btns1" onclick="playText()">Play</button>
+                    <button class="lazy_btns2"  onclick="pauseText()">Pause</button>
+                    <button class="lazy_btns3"  onclick="resumeText()">Resume</button>
+                    <button class="lazy_btns4"  onclick="stopText()">Stop</button>
+                    <button class="lazy_btns5"  onclick="refreshPage()">refresh</button>
+
+                </div>
+                   
+
+            </div>
+        </div>
+    
+    
+        
+     
+    </div>
+    <!-- ......main container..end  -->
+</div>
+    <!-- javascript linking source -->
+     <script src="script.js"></script>
+     <script src="script.js"></script>
+</body>
+</html>
